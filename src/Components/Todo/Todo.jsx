@@ -16,14 +16,21 @@ function Todo() {
   });
   const [page, setPage] = useState(1);
   const [pageLinks, setPageLinks] = useState({});
+  const [sortBy, setSortBy] = React.useState("asc");
 
   const getTodos = (page = 1, limit = 5) => {
     setTodos({ ...todos, isLoading: true, isError: false });
 
     axios
-      .get(
-        `https://json-server-mocker-masai.herokuapp.com/tasks?_page=${page}&_limit=${limit}`
-      )
+      .get(`https://json-server-mocker-masai.herokuapp.com/tasks`, {
+        params: {
+          // ?_page=${page}&_limit=${limit}&_sort=title&_order
+          _page: page,
+          _limit: limit,
+          _sort: "title",
+          _order: sortBy
+        }
+      })
       .then(({ data, headers: { link } }) => {
         setTodos({ ...todos, isLoading: false, data });
         setPageLinks(parse(link));
@@ -43,7 +50,7 @@ function Todo() {
       axios
         .post("https://json-server-mocker-masai.herokuapp.com/tasks", payload)
         .then((res) => {
-          return getTodos();
+          return getTodos(page);
         })
         // can do .then if required
         .catch((err) => {
@@ -60,7 +67,7 @@ function Todo() {
           status: !status
         })
         .then((res) => {
-          getTodos();
+          getTodos(page);
         })
         // can do .then if required
         .catch((err) => {
@@ -75,7 +82,7 @@ function Todo() {
       axios
         .delete(`https://json-server-mocker-masai.herokuapp.com/tasks/${id}`)
         .then(() => {
-          getTodos();
+          getTodos(page);
         })
         // can do .then if required
         .catch((err) => {
