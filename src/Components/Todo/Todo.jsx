@@ -16,7 +16,6 @@ function Todo() {
   });
   const [page, setPage] = useState(1);
   const [pageLinks, setPageLinks] = useState({});
-  const [sortBy, setSortBy] = React.useState("asc");
 
   const getTodos = (page = 1, limit = 5) => {
     setTodos({ ...todos, isLoading: true, isError: false });
@@ -24,11 +23,8 @@ function Todo() {
     axios
       .get(`https://json-server-mocker-masai.herokuapp.com/tasks`, {
         params: {
-          // ?_page=${page}&_limit=${limit}&_sort=title&_order
           _page: page,
-          _limit: limit,
-          _sort: "title",
-          _order: sortBy
+          _limit: limit
         }
       })
       .then(({ data, headers: { link } }) => {
