@@ -1,20 +1,12 @@
 import React from "react";
 import TodoListItem from "./TodoListItem";
 
-const TodoList = ({ data, handleToggle, handleDelete }) => {
-  if (!data) {
-    throw new Error(`${data} is empty`);
-  }
+const TodoList = () => {
   return (
     <div>
-      {data?.map((item) => {
+      {[].map((item) => {
         return (
-          <TodoListItem
-            key={item.id}
-            handleDelete={handleDelete}
-            handleToggle={handleToggle}
-            {...item}
-          />
+          <TodoListItem/>
         );
       })}
     </div>
