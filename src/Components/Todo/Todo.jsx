@@ -12,7 +12,7 @@ function Todo() {
   const [todos, setTodos] = useState({
     isLoading: false,
     data: [],
-    isError: false
+    isError: false,
   });
   const [page, setPage] = useState(1);
   const [pageLinks, setPageLinks] = useState({});
@@ -20,12 +20,12 @@ function Todo() {
   const getTodos = (page = 1, limit = 5) => {
     setTodos({ ...todos, isLoading: true, isError: false });
 
-    axios
+    return axios
       .get(`https://json-server-mocker-masai.herokuapp.com/tasks`, {
         params: {
           _page: page,
-          _limit: limit
-        }
+          _limit: limit,
+        },
       })
       .then(({ data, headers: { link } }) => {
         setTodos({ ...todos, isLoading: false, data });
@@ -39,7 +39,7 @@ function Todo() {
   const handleAdd = (title) => {
     const payload = {
       title,
-      status: false
+      status: false,
     };
     setTodos({ ...todos, isLoading: true, isError: false });
     return (
@@ -60,7 +60,7 @@ function Todo() {
     return (
       axios
         .patch(`https://json-server-mocker-masai.herokuapp.com/tasks/${id}`, {
-          status: !status
+          status: !status,
         })
         .then((res) => {
           getTodos(page);
@@ -104,6 +104,7 @@ function Todo() {
       <div className={styles.spinnerContainer}>
         {todos.isLoading && <Spinner />}
       </div>
+      {todos.isError && <div>Error</div>}
       <Pagination
         currentPage={page}
         pageLinks={pageLinks !== null && pageLinks}

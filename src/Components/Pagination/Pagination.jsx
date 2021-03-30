@@ -5,20 +5,33 @@ const Pagination = ({ currentPage, onChange, pageLinks = {} }) => {
 
   return (
     <div className={styles.container}>
-      <button disabled={!first} onClick={() => onChange(first)}>
+      <button
+        data-testid="button-first"
+        disabled={!first}
+        onClick={() => onChange(first)}
+      >
         First
       </button>
       <button
+        data-testid="button-prev"
         disabled={!prev || Number(currentPage) === 1}
         onClick={() => onChange(prev)}
       >
         Prev
       </button>
-      <button>{currentPage}</button>
-      <button disabled={!next} onClick={() => onChange(next)}>
+      <button data-testid="button-current">{currentPage}</button>
+      <button
+        data-testid="button-next"
+        disabled={!next}
+        onClick={() => onChange(next)}
+      >
         Next
       </button>
-      <button disabled={!last} onClick={() => onChange(last)}>
+      <button
+        data-testid="button-last"
+        disabled={!last}
+        onClick={() => onChange(last)}
+      >
         Last
       </button>
     </div>

@@ -3,7 +3,7 @@ import styles from "./TodoItem.module.css";
 
 const TodoListItem = ({ title, id, status, handleToggle, handleDelete }) => {
   return (
-    <div className={styles.itemContainer}>
+    <div className={styles.itemContainer} data-testid="list-todo">
       <div> {title} </div>
       <div className={styles.rightBox}>
         <div
