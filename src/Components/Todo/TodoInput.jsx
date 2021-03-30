@@ -5,7 +5,7 @@ const TodoInput = ({ handleSubmit }) => {
   return (
     <>
       <h1>Todo</h1>
-      <form className={styles.container} onSubmit={onSubmit}>
+      <form className={styles.container}>
         <input
           className={styles.inputBox}
           data-testid="input-box"
