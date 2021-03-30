@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { TodoInput } from "./TodoInput";
 import TodoList from "./TodoList";
-import axios from "axios";
 import { Pagination } from "../Pagination";
-import parse from "parse-link-header";
 import styles from "./Todo.module.css";
 import { Spinner } from "../Common/Spinner";
 

@@ -1,6 +1,7 @@
 # test-sample
 
 - Create a todo application with the following features
+- `npm run server` : start the server
 - The Following components are present
   - Todo.jsx
     - TodoInput.jsx
@@ -38,10 +39,10 @@
     ```
   - Create a new todo item
   - make a network request to add a new item
-  - Toggle status of the todo item
-  - Delete status of the todo item
   - Use pagination and retrieve headers from the response headers of the API
-  - When adding a new item, or toggling a task, or deleting
+  - When adding a new item
     - on success fetch the data again with the current page again
   - First, Prev, currentPage, Next, Last pages should be shown on the UI
   - the prev and next buttons should be disabled if not valid
+  - use `parse-link-header` library to parse the response headers to retrieve links
+  - read the test case responses to get clarity on what needs to be passed
