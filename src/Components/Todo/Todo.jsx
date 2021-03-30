@@ -21,7 +21,7 @@ function Todo() {
     setTodos({ ...todos, isLoading: true, isError: false });
 
     return axios
-      .get(`https://json-server-mocker-masai.herokuapp.com/tasks`, {
+      .get(`http://localhost:5050/tasks`, {
         params: {
           _page: page,
           _limit: limit,
@@ -44,7 +44,7 @@ function Todo() {
     setTodos({ ...todos, isLoading: true, isError: false });
     return (
       axios
-        .post("https://json-server-mocker-masai.herokuapp.com/tasks", payload)
+        .post("http://localhost:5050/tasks", payload)
         .then((res) => {
           return getTodos(page);
         })
@@ -59,7 +59,7 @@ function Todo() {
     setTodos({ ...todos, isLoading: true, isError: false });
     return (
       axios
-        .patch(`https://json-server-mocker-masai.herokuapp.com/tasks/${id}`, {
+        .patch(`http://localhost:5050/tasks/${id}`, {
           status: !status,
         })
         .then((res) => {
@@ -76,7 +76,7 @@ function Todo() {
     setTodos({ ...todos, isLoading: true, isError: false });
     return (
       axios
-        .delete(`https://json-server-mocker-masai.herokuapp.com/tasks/${id}`)
+        .delete(`http://localhost:5050/tasks/${id}`)
         .then(() => {
           getTodos(page);
         })
@@ -104,7 +104,7 @@ function Todo() {
       <div className={styles.spinnerContainer}>
         {todos.isLoading && <Spinner />}
       </div>
-      {todos.isError && <div>Error</div>}
+      {todos.isError && <div data-testid="error-tasks">Error</div>}
       <Pagination
         currentPage={page}
         pageLinks={pageLinks !== null && pageLinks}

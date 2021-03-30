@@ -16,11 +16,17 @@ const TodoInput = ({ handleSubmit }) => {
         <input
           value={text}
           className={styles.inputBox}
+          data-testid="input-box"
           placeholder="add something"
           onChange={(e) => setText(e.target.value)}
           type="text"
         />
-        <input className={styles.button} value="ADD" type="submit" />
+        <input
+          data-testid="add-task-button"
+          className={styles.button}
+          value="ADD"
+          type="submit"
+        />
       </form>
     </>
   );
